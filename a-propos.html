@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&amp;SY Services - À Propos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333333;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background-color: #0F3D75;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            margin: -15px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Bouton Burger (Affiché sur tous les écrans) */
+        .burger-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1002;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .burger-btn:hover {
+            color: #22A06B;
+            transform: scale(1.1);
+        }
+
+        /* Menu Caché par défaut (Slide-in / Overlay) */
+        nav ul#nav-list {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background-color: #0F3D75;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1001;
+        }
+
+        /* Classe activée via JS */
+        nav ul#nav-list.active {
+            right: 0;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            color: #ffffff;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #22A06B;
+        }
+
+        .btn-nav {
+            background-color: #22A06B;
+            color: #fff !important;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background-color: #1b8256;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(34, 160, 107, 0.3);
+        }
+
+        .about-section {
+            padding: 4rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-section h1 {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .about-text {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .about-text h2 {
+            color: #0F3D75;
+            margin-bottom: 1rem;
+        }
+
+        .about-card {
+            background: #F4F6FB;
+            border-left: 4px solid #22A06B;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            animation: slideInRight 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        footer {
+            background-color: #0F3D75;
+            color: #ffffff;
+            padding-top: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5% 2rem 5%;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+        }
+
+        .footer-info i {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: #0F3D75;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #22A06B;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 1rem 5%;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* KEYFRAMES ANIMATIONS */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <img src="colored-logo.png" alt="R&SY Services Logo">
+        </a>
+        <nav>
+            <button class="burger-btn" id="burger-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="nav-list">
+                <li><a href="index.html">ACCUEIL</a></li>
+                <li><a href="a-propos.html" class="active">À PROPOS</a></li>
+                <li><a href="services.html">NOS SERVICES</a></li>
+                <li><a href="boutique.html">BOUTIQUE</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="contact.html" class="btn-nav">DEMANDER UN DEVIS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-section">
+        <h1 style="color: #0F3D75; text-align: center; margin-bottom: 2rem;">À Propos de R&SY Services</h1>
+        <div class="about-text">
+            <h2>Des espaces impeccables, un service irréprochable.</h2>
+            <p>R&SY Services est une entreprise spécialisée dans le nettoyage professionnel, la conciergerie sur-mesure
+                et la distribution de produits d'entretien écoresponsables.</p>
+            <div class="about-card">
+                <h4>Notre Engagement Qualité</h4>
+                <p>Nous intervenons avec rigueur et réactivité à Niamey et ses environs pour offrir un environnement
+                    propre, sain et accueillant à chacun de nos clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-info">
+                <i class="fa-solid fa-location-dot"></i>
+                <div><strong>R&SY SERVICES</strong><br>Quartier Plateau, B.P. 10574, Niamey, Niger</div>
+            </div>
+            <div class="footer-info">
+                <i class="fa-solid fa-phone"></i>
+                <div><strong>+227 96 12 34 56</strong><br>Lundi au Samedi - 8h00 / 18h00</div>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 R&SY Services. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        const burgerBtn = document.getElementById('burger-btn');
+        const navList = document.getElementById('nav-list');
+        const burgerIcon = burgerBtn.querySelector('i');
+
+        burgerBtn.addEventListener('click', () => {
+            navList.classList.toggle('active');
+
+            // Changement de l'icône burger vers une croix (X)
+            if (navList.classList.contains('active')) {
+                burgerIcon.classList.remove('fa-bars');
+                burgerIcon.classList.add('fa-xmark');
+            } else {
+                burgerIcon.classList.remove('fa-xmark');
+                burgerIcon.classList.add('fa-bars');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
