@@ -2,780 +2,780 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R&amp;SY Services - Accueil</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #333333;
-            background-color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* HEADER */
-        header {
-            background-color: #0F3D75;
-            color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo img {
-            height: 125px;
-            width: auto;
-            display: block;
-            object-fit: contain;
-            margin: -15px 0;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.03);
-        }
-
-        /* MENU BURGER (Partout) */
-        .burger-btn {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.8rem;
-            cursor: pointer;
-            z-index: 1002;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .burger-btn:hover {
-            color: #22A06B;
-            transform: scale(1.1);
-        }
-
-        /* OVERLAY NAV & SLIDE-IN MENU */
-        nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background-color: #0F3D75;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            z-index: 1001;
-        }
-
-        nav.open {
-            right: 0;
-        }
-
-        nav ul {
-            display: flex;
-            flex-direction: column;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-            text-align: center;
-        }
-
-        nav a {
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            color: #ffffff;
-            position: relative;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: #22A06B;
-        }
-
-        .btn-nav {
-            background-color: #22A06B;
-            color: #fff !important;
-            padding: 12px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-nav:hover {
-            background-color: #1b8256;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(34, 160, 107, 0.3);
-        }
-
-        /* MASK DE FOND LORS DE L'OUVERTURE */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-            z-index: 999;
-        }
-
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* BOUTONS HERO */
-        .btn-primary {
-            background-color: #22A06B;
-            color: #fff;
-            padding: 12px 22px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-right: 10px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #1b8256;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(34, 160, 107, 0.3);
-        }
-
-        .btn-primary i {
-            transition: transform 0.3s ease;
-        }
-
-        .btn-primary:hover i {
-            transform: scale(1.2);
-        }
-
-        .btn-secondary {
-            background-color: #0F3D75;
-            color: #fff;
-            padding: 12px 22px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background-color: #0b2e59;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(15, 61, 117, 0.3);
-        }
-
-        .btn-secondary i {
-            transition: transform 0.3s ease;
-        }
-
-        .btn-secondary:hover i {
-            transform: rotate(15deg);
-        }
-
-        /* HERO SECTION & ANIMATIONS */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 3rem 5%;
-            background-color: #ffffff;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-content {
-            flex: 1;
-            min-width: 320px;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .hero-title {
-            font-size: 2.2rem;
-            color: #0F3D75;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .hero-title span {
-            color: #22A06B;
-            display: block;
-        }
-
-        .hero-content p {
-            color: #333333;
-            max-width: 480px;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .hero-slogan {
-            font-family: 'Caveat', cursive;
-            font-size: 1.6rem;
-            color: #0F3D75;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero-img {
-            flex: 1;
-            min-width: 320px;
-            text-align: center;
-            animation: fadeInRight 0.8s ease-out forwards;
-        }
-
-        .hero-img img {
-            width: 100%;
-            max-width: 520px;
-            border-radius: 8px;
-            object-fit: cover;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-
-        .hero-img img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* BANNIÈRE VALEURS */
-        .features {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            padding: 1.5rem 5%;
-            background-color: #ffffff;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .feature-card {
-            text-align: center;
-            flex: 1;
-            min-width: 140px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card i {
-            font-size: 1.8rem;
-            color: #0F3D75;
-            margin-bottom: 8px;
-            display: block;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .feature-card:hover i {
-            transform: scale(1.2);
-            color: #22A06B;
-        }
-
-        .feature-card h4 {
-            color: #0F3D75;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 3px;
-        }
-
-        .feature-card p {
-            font-size: 0.75rem;
-            color: #666;
-        }
-
-        /* SECTION SERVICES */
-        .services-section {
-            padding: 4rem 5%;
-            text-align: center;
-            background-color: #ffffff;
-        }
-
-        .section-title {
-            color: #0F3D75;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-title::before,
-        .section-title::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 40px;
-            height: 2px;
-            background-color: #0F3D75;
-            transition: width 0.3s ease;
-        }
-
-        .section-title::before {
-            left: -55px;
-        }
-
-        .section-title::after {
-            right: -55px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .service-card {
-            background: #F4F6FB;
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            text-align: left;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border: 1px solid #e8e8e8;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-            border-color: #22A06B;
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #0F3D75;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            transition: transform 0.4s ease, background-color 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: rotateY(180deg);
-        }
-
-        .service-card.green .service-icon {
-            background-color: #22A06B;
-        }
-
-        .service-card h3 {
-            color: #0F3D75;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card ul li {
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 15px;
-            color: #444;
-        }
-
-        .service-card ul li::before {
-            content: "•";
-            color: #22A06B;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .service-card p {
-            font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-link {
-            color: #0F3D75;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: gap 0.3s ease, color 0.3s ease;
-        }
-
-        .service-card:hover .service-link {
-            color: #22A06B;
-            gap: 10px;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #0F3D75;
-            color: #ffffff;
-            padding-top: 2.5rem;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5% 2rem 5%;
-            flex-wrap: wrap;
-            gap: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .footer-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.85rem;
-        }
-
-        .footer-info i {
-            font-size: 1.2rem;
-            color: #ffffff;
-            transition: transform 0.3s ease;
-        }
-
-        .footer-info:hover i {
-            transform: scale(1.2);
-            color: #22A06B;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-links a {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            color: #0F3D75;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: #22A06B;
-            color: #ffffff;
-            transform: translateY(-3px);
-        }
-
-        .footer-reassurance {
-            display: flex;
-            justify-content: space-around;
-            padding: 1.5rem 5%;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .reassurance-item {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: transform 0.3s ease;
-        }
-
-        .reassurance-item:hover {
-            transform: translateY(-3px);
-        }
-
-        .reassurance-item i {
-            font-size: 1.3rem;
-            display: block;
-            margin-bottom: 5px;
-            color: #ffffff;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 1rem 5%;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* KEYFRAMES ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R&amp;SY Services - Accueil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333333;
+      background-color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #0F3D75;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      height: 125px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      margin: -15px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.03);
+    }
+
+    /* MENU BURGER (Partout) */
+    .burger-btn {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 1002;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .burger-btn:hover {
+      color: #22A06B;
+      transform: scale(1.1);
+    }
+
+    /* OVERLAY NAV & SLIDE-IN MENU */
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100vh;
+      background-color: #0F3D75;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 1001;
+    }
+
+    nav.open {
+      right: 0;
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      gap: 25px;
+      align-items: center;
+      text-align: center;
+    }
+
+    nav a {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      color: #ffffff;
+      position: relative;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #22A06B;
+    }
+
+    .btn-nav {
+      background-color: #22A06B;
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav:hover {
+      background-color: #1b8256;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(34, 160, 107, 0.3);
+    }
+
+    /* MASK DE FOND LORS DE L'OUVERTURE */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 999;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* BOUTONS HERO */
+    .btn-primary {
+      background-color: #22A06B;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-right: 10px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #1b8256;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(34, 160, 107, 0.3);
+    }
+
+    .btn-primary i {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover i {
+      transform: scale(1.2);
+    }
+
+    .btn-secondary {
+      background-color: #0F3D75;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #0b2e59;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(15, 61, 117, 0.3);
+    }
+
+    .btn-secondary i {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-secondary:hover i {
+      transform: rotate(15deg);
+    }
+
+    /* HERO SECTION & ANIMATIONS */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 5%;
+      background-color: #ffffff;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 320px;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      color: #0F3D75;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: #22A06B;
+      display: block;
+    }
+
+    .hero-content p {
+      color: #333333;
+      max-width: 480px;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-slogan {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      color: #0F3D75;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-img {
+      flex: 1;
+      min-width: 320px;
+      text-align: center;
+      animation: fadeInRight 0.8s ease-out forwards;
+    }
+
+    .hero-img img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 8px;
+      object-fit: cover;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .hero-img img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* BANNIÈRE VALEURS */
+    .features {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 1.5rem 5%;
+      background-color: #ffffff;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .feature-card {
+      text-align: center;
+      flex: 1;
+      min-width: 140px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card i {
+      font-size: 1.8rem;
+      color: #0F3D75;
+      margin-bottom: 8px;
+      display: block;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .feature-card:hover i {
+      transform: scale(1.2);
+      color: #22A06B;
+    }
+
+    .feature-card h4 {
+      color: #0F3D75;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .feature-card p {
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    /* SECTION SERVICES */
+    .services-section {
+      padding: 4rem 5%;
+      text-align: center;
+      background-color: #ffffff;
+    }
+
+    .section-title {
+      color: #0F3D75;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 2px;
+      background-color: #0F3D75;
+      transition: width 0.3s ease;
+    }
+
+    .section-title::before {
+      left: -55px;
+    }
+
+    .section-title::after {
+      right: -55px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: #F4F6FB;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: left;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #e8e8e8;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: #22A06B;
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #0F3D75;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      transition: transform 0.4s ease, background-color 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: rotateY(180deg);
+    }
+
+    .service-card.green .service-icon {
+      background-color: #22A06B;
+    }
+
+    .service-card h3 {
+      color: #0F3D75;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card ul li {
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 15px;
+      color: #444;
+    }
+
+    .service-card ul li::before {
+      content: "•";
+      color: #22A06B;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-link {
+      color: #0F3D75;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.3s ease, color 0.3s ease;
+    }
+
+    .service-card:hover .service-link {
+      color: #22A06B;
+      gap: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #0F3D75;
+      color: #ffffff;
+      padding-top: 2.5rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5% 2rem 5%;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .footer-info i {
+      font-size: 1.2rem;
+      color: #ffffff;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-info:hover i {
+      transform: scale(1.2);
+      color: #22A06B;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-links a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      color: #0F3D75;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background-color: #22A06B;
+      color: #ffffff;
+      transform: translateY(-3px);
+    }
+
+    .footer-reassurance {
+      display: flex;
+      justify-content: space-around;
+      padding: 1.5rem 5%;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .reassurance-item {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: transform 0.3s ease;
+    }
+
+    .reassurance-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .reassurance-item i {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 5px;
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 1rem 5%;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* KEYFRAMES ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <a href="index.html" class="logo">
-            <img src="colored-logo.png" alt="R&SY Services Logo">
-        </a>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="colored-logo.png" alt="R&SY Services Logo">
+    </a>
 
-        <!-- BOUTON BURGER -->
-        <button class="burger-btn" id="burger-btn" aria-label="Menu">
-            <i class="fa-solid fa-bars" id="burger-icon"></i>
-        </button>
+    <!-- BOUTON BURGER -->
+    <button class="burger-btn" id="burger-btn" aria-label="Menu">
+      <i class="fa-solid fa-bars" id="burger-icon"></i>
+    </button>
 
-        <!-- MENU PRINCIPAL -->
-        <nav id="nav-menu">
-            <ul id="nav-list">
-                <li><a href="index.html" class="active">ACCUEIL</a></li>
-                <li><a href="a-propos.html">À PROPOS</a></li>
-                <li><a href="services.html">NOS SERVICES</a></li>
-                <li><a href="boutique.html">BOUTIQUE</a></li>
-                <li><a href="blog.html">BLOG</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
-                <li><a href="contact.html" class="btn-nav">DEMANDER UN DEVIS</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- MENU PRINCIPAL -->
+    <nav id="nav-menu">
+      <ul id="nav-list">
+        <li><a href="index.html" class="active">ACCUEIL</a></li>
+        <li><a href="a-propos.html">À PROPOS</a></li>
+        <li><a href="services.html">NOS SERVICES</a></li>
+        <li><a href="boutique.html">BOUTIQUE</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="contact.html" class="btn-nav">DEMANDER UN DEVIS</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- FOND SOMBRE LORS DE L'OUVERTURE DU MENU -->
-    <div class="menu-overlay" id="menu-overlay"></div>
+  <!-- FOND SOMBRE LORS DE L'OUVERTURE DU MENU -->
+  <div class="menu-overlay" id="menu-overlay"></div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">VOTRE PARTENAIRE DE CONFIANCE <span>POUR DES ESPACES PROPRES ET SAINS</span></h1>
-            <p>Nettoyage professionnel, conciergerie et produits d'entretien de qualité pour les entreprises et les
-                particuliers à Niamey et dans toute la région.</p>
-            <div class="hero-slogan">Des espaces impeccables, un service irréprochable.</div>
-            <div>
-                <a href="contact.html" class="btn-primary">DEMANDER UN DEVIS GRATUIT <i
-                        class="fa-solid fa-circle-check"></i></a>
-                <a href="tel:+22796123456" class="btn-secondary">ÊTRE RAPPELÉ <i class="fa-solid fa-phone"></i></a>
-            </div>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">VOTRE PARTENAIRE DE CONFIANCE <span>POUR DES ESPACES PROPRES ET SAINS</span></h1>
+      <p>Nettoyage professionnel, conciergerie et produits d'entretien de qualité pour les entreprises et les
+        particuliers à Niamey et dans toute la région.</p>
+      <div class="hero-slogan">Des espaces impeccables, un service irréprochable.</div>
+      <div>
+        <a href="contact.html" class="btn-primary">DEMANDER UN DEVIS GRATUIT <i
+            class="fa-solid fa-circle-check"></i></a>
+        <a href="tel:+22788044768" class="btn-secondary">ÊTRE RAPPELÉ <i class="fa-solid fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+        alt="Équipe de nettoyage R&SY Services">
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <i class="fa-regular fa-shield-check"></i>
+      <h4>CONFIANCE</h4>
+      <p>Un partenaire fiable et sérieux</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa-solid fa-sparkles"></i>
+      <h4>PROPRETÉ</h4>
+      <p>Des résultats impeccables</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa-solid fa-leaf"></i>
+      <h4>ÉCO-RESPONSABLE</h4>
+      <p>Des produits respectueux de l'environnement</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa-regular fa-clock"></i>
+      <h4>RÉACTIVITÉ</h4>
+      <p>Intervention rapide et efficace</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa-solid fa-user-group"></i>
+      <h4>PROFESSIONNALISME</h4>
+      <p>Une équipe qualifiée à votre service</p>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <h2 class="section-title">NOS SERVICES</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div>
+          <div class="service-icon"><i class="fa-solid fa-broom"></i></div>
+          <h3>NETTOYAGE PROFESSIONNEL</h3>
+          <ul>
+            <li>Bureaux & entreprises</li>
+            <li>Commerces</li>
+            <li>Copropriétés</li>
+            <li>Cabinets médicaux</li>
+            <li>Fin de chantier</li>
+            <li>Nettoyage de vitres</li>
+          </ul>
         </div>
-        <div class="hero-img">
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
-                alt="Équipe de nettoyage R&SY Services">
+        <a href="services.html" class="service-link">EN SAVOIR PLUS →</a>
+      </div>
+
+      <div class="service-card green">
+        <div>
+          <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
+          <h3>CONCIERGERIE</h3>
+          <ul>
+            <li>Gestion Airbnb</li>
+            <li>Accueil voyageurs</li>
+            <li>Remise de clés</li>
+            <li>États des lieux</li>
+            <li>Préparation des logements</li>
+            <li>Gestion du linge</li>
+          </ul>
         </div>
-    </section>
+        <a href="services.html" class="service-link">EN SAVOIR PLUS →</a>
+      </div>
 
-    <section class="features">
-        <div class="feature-card">
-            <i class="fa-regular fa-shield-check"></i>
-            <h4>CONFIANCE</h4>
-            <p>Un partenaire fiable et sérieux</p>
+      <div class="service-card">
+        <div>
+          <div class="service-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+          <h3>BOUTIQUE</h3>
+          <p>Découvrez notre sélection de produits d'entretien professionnels et de parfums d'ambiance.</p>
         </div>
-        <div class="feature-card">
-            <i class="fa-solid fa-sparkles"></i>
-            <h4>PROPRETÉ</h4>
-            <p>Des résultats impeccables</p>
+        <a href="boutique.html" class="service-link">VOIR LA BOUTIQUE →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-info">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <strong>R&SY SERVICES</strong><br>
+          Quartier Plateau<br>
+          B.P. 10574, Niamey, Niger
         </div>
-        <div class="feature-card">
-            <i class="fa-solid fa-leaf"></i>
-            <h4>ÉCO-RESPONSABLE</h4>
-            <p>Des produits respectueux de l'environnement</p>
+      </div>
+      <div class="footer-info">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <strong>+227 88 04 47 68</strong><br>
+          Lundi au Samedi<br>
+          8h00 - 18h00
         </div>
-        <div class="feature-card">
-            <i class="fa-regular fa-clock"></i>
-            <h4>RÉACTIVITÉ</h4>
-            <p>Intervention rapide et efficace</p>
+      </div>
+      <div class="footer-info">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <strong>contact@rsyservices.ne</strong><br>
+          www.rsyservices.ne
         </div>
-        <div class="feature-card">
-            <i class="fa-solid fa-user-group"></i>
-            <h4>PROFESSIONNALISME</h4>
-            <p>Une équipe qualifiée à votre service</p>
-        </div>
-    </section>
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
 
-    <section class="services-section">
-        <h2 class="section-title">NOS SERVICES</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div>
-                    <div class="service-icon"><i class="fa-solid fa-broom"></i></div>
-                    <h3>NETTOYAGE PROFESSIONNEL</h3>
-                    <ul>
-                        <li>Bureaux & entreprises</li>
-                        <li>Commerces</li>
-                        <li>Copropriétés</li>
-                        <li>Cabinets médicaux</li>
-                        <li>Fin de chantier</li>
-                        <li>Nettoyage de vitres</li>
-                    </ul>
-                </div>
-                <a href="services.html" class="service-link">EN SAVOIR PLUS →</a>
-            </div>
+    <div class="footer-reassurance">
+      <div class="reassurance-item"><i class="fa-regular fa-file-lines"></i> DEVIS GRATUIT</div>
+      <div class="reassurance-item"><i class="fa-solid fa-bolt"></i> INTERVENTION RAPIDE</div>
+      <div class="reassurance-item"><i class="fa-solid fa-spray-can"></i> PRODUITS PROFESSIONNELS</div>
+      <div class="reassurance-item"><i class="fa-regular fa-thumbs-up"></i> SATISFACTION GARANTIE</div>
+    </div>
 
-            <div class="service-card green">
-                <div>
-                    <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                    <h3>CONCIERGERIE</h3>
-                    <ul>
-                        <li>Gestion Airbnb</li>
-                        <li>Accueil voyageurs</li>
-                        <li>Remise de clés</li>
-                        <li>États des lieux</li>
-                        <li>Préparation des logements</li>
-                        <li>Gestion du linge</li>
-                    </ul>
-                </div>
-                <a href="services.html" class="service-link">EN SAVOIR PLUS →</a>
-            </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 R&SY Services. Tous droits réservés.</p>
+    </div>
+  </footer>
 
-            <div class="service-card">
-                <div>
-                    <div class="service-icon"><i class="fa-solid fa-basket-shopping"></i></div>
-                    <h3>BOUTIQUE</h3>
-                    <p>Découvrez notre sélection de produits d'entretien professionnels et de parfums d'ambiance.</p>
-                </div>
-                <a href="boutique.html" class="service-link">VOIR LA BOUTIQUE →</a>
-            </div>
-        </div>
-    </section>
+  <!-- SCRIPT GESTION DU BURGER -->
+  <script>
+    const burgerBtn = document.getElementById('burger-btn');
+    const burgerIcon = document.getElementById('burger-icon');
+    const navMenu = document.getElementById('nav-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
 
-    <footer>
-        <div class="footer-top">
-            <div class="footer-info">
-                <i class="fa-solid fa-location-dot"></i>
-                <div>
-                    <strong>R&SY SERVICES</strong><br>
-                    Quartier Plateau<br>
-                    B.P. 10574, Niamey, Niger
-                </div>
-            </div>
-            <div class="footer-info">
-                <i class="fa-solid fa-phone"></i>
-                <div>
-                    <strong>+227 96 12 34 56</strong><br>
-                    Lundi au Samedi<br>
-                    8h00 - 18h00
-                </div>
-            </div>
-            <div class="footer-info">
-                <i class="fa-solid fa-envelope"></i>
-                <div>
-                    <strong>contact@rsyservices.ne</strong><br>
-                    www.rsyservices.ne
-                </div>
-            </div>
-            <div class="social-links">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-        </div>
+    function toggleMenu() {
+      navMenu.classList.toggle('open');
+      menuOverlay.classList.toggle('active');
 
-        <div class="footer-reassurance">
-            <div class="reassurance-item"><i class="fa-regular fa-file-lines"></i> DEVIS GRATUIT</div>
-            <div class="reassurance-item"><i class="fa-solid fa-bolt"></i> INTERVENTION RAPIDE</div>
-            <div class="reassurance-item"><i class="fa-solid fa-spray-can"></i> PRODUITS PROFESSIONNELS</div>
-            <div class="reassurance-item"><i class="fa-regular fa-thumbs-up"></i> SATISFACTION GARANTIE</div>
-        </div>
+      if (navMenu.classList.contains('open')) {
+        burgerIcon.classList.remove('fa-bars');
+        burgerIcon.classList.add('fa-xmark');
+      } else {
+        burgerIcon.classList.remove('fa-xmark');
+        burgerIcon.classList.add('fa-bars');
+      }
+    }
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 R&SY Services. Tous droits réservés.</p>
-        </div>
-    </footer>
-
-    <!-- SCRIPT GESTION DU BURGER -->
-    <script>
-        const burgerBtn = document.getElementById('burger-btn');
-        const burgerIcon = document.getElementById('burger-icon');
-        const navMenu = document.getElementById('nav-menu');
-        const menuOverlay = document.getElementById('menu-overlay');
-
-        function toggleMenu() {
-            navMenu.classList.toggle('open');
-            menuOverlay.classList.toggle('active');
-
-            if (navMenu.classList.contains('open')) {
-                burgerIcon.classList.remove('fa-bars');
-                burgerIcon.classList.add('fa-xmark');
-            } else {
-                burgerIcon.classList.remove('fa-xmark');
-                burgerIcon.classList.add('fa-bars');
-            }
-        }
-
-        burgerBtn.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
-    </script>
+    burgerBtn.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
+  </script>
 
 </body>
 
